@@ -2,6 +2,7 @@
 namespace app\controllers;
 
 use Yii;
+use yii\base\Action;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
@@ -72,7 +73,7 @@ class SiteController extends Controller
     {
        
         if (!Yii::$app->user->isGuest) {
-            Yii::error('lần 1-------');
+
             return $this->goHome();
         }
 
@@ -80,16 +81,32 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            Yii::error('lần 2-------');
+
             return $this->goBack();
         } else {
          
             $model->password = '';
-            
+
             return $this->render('login', [
                 'model' => $model,
             ]);
         }
+    }
+
+    public function actionSignup()
+    {
+        yii::error('join signup');
+        $this->layout = 'blank';
+        $model = new SignupForm();
+        if ($model->load(Yii::$app->request->post()) && $model->signup()) {
+            Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
+            return $this->goHome();
+        }
+
+        return $this->render('signup', [
+            'model' => $model
+        ]);
+
     }
 
     /**
@@ -102,4 +119,6 @@ class SiteController extends Controller
         $test =  Yii::$app->user->logout();
         return $this->goHome();
     }
+
+
 }
