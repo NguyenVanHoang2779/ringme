@@ -89,9 +89,13 @@ class VideoController extends Controller
 
 //            $model->videoImage->saveAs($pathImage,false);
 //            $model->videoMedia->saveAs($pathVideo,false);
-            if($model->save()) {
-//                yii::error($model->id_video . 'ID==============');
-                return $this->redirect('view',['id'=>$model->id_video]);
+            if($model->save(false)) {
+
+//               $id =  ['id'=>$model->id_video] ;
+//               $id=  (int)implode(",", $id);
+                $lastInsertID = $model->getPrimaryKey();
+                return $this->redirect(['view', 'id' => $lastInsertID]);
+
             }
         }
 
