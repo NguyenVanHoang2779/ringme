@@ -8,6 +8,7 @@
 namespace yii\base;
 
 use Yii;
+
 use yii\helpers\StringHelper;
 
 /**
@@ -208,6 +209,7 @@ class Component extends BaseObject
         }
 
         throw new UnknownPropertyException('Setting unknown property: ' . get_class($this) . '::' . $name);
+
     }
 
     /**

@@ -14,8 +14,8 @@ AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
-<html lang="en">
 
+<?= Html::csrfMetaTags() ?>
 <head>
 
     <meta charset="utf-8">

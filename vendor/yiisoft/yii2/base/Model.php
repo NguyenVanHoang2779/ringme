@@ -863,6 +863,8 @@ class Model extends Component implements StaticInstanceInterface, IteratorAggreg
      */
     public function load($data, $formName = null)
     {
+//       yii::error('============> data' . $data);
+
         $scope = $formName === null ? $this->formName() : $formName;
         if ($scope === '' && !empty($data)) {
             $this->setAttributes($data);
@@ -870,7 +872,6 @@ class Model extends Component implements StaticInstanceInterface, IteratorAggreg
             return true;
         } elseif (isset($data[$scope])) {
             $this->setAttributes($data[$scope]);
-
             return true;
         }
 
